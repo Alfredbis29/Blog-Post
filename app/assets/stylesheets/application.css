@@ -217,6 +217,24 @@ main {
   color: var(--crimson);
 }
 
+.footer .icon-text .icon {
+  color: var(--crimson);
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.footer p {
+  margin-bottom: 0.5rem;
+}
+
 .notification {
   margin-bottom: 0;
   border-radius: 0;
