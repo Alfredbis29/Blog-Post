@@ -19,7 +19,7 @@
           <div class="card">
             <div class="card-content">
               <p class="title is-4">
-                <%= link_to post.title, post, class: 'has-text-dark' %>
+                <%= link_to post.title, post %>
               </p>
               <p class="subtitle is-6 has-text-grey">
                 By <%= post.author %> • <%= time_ago_in_words(post.created_at) %> ago

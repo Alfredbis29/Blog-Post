@@ -15,19 +15,44 @@
  *= require_self
  */
 
-body {
+/* Blood Red & Black Color Scheme */
+:root {
+  --blood-red: #8B0000;
+  --dark-red: #5C0000;
+  --crimson: #DC143C;
+  --black: #000000;
+  --dark-gray: #1a1a1a;
+  --light-red: #A52A2A;
+}
+
+/* Global styles for consistent theming */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
   min-height: 100vh;
+  background-color: #0a0a0a;
+  color: #e0e0e0;
+}
+
+body {
   display: flex;
   flex-direction: column;
+  background-color: #0a0a0a;
+  color: #e0e0e0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 main {
   flex: 1;
+  background: linear-gradient(to bottom, #1a1a1a 0%, #0a0a0a 100%);
 }
 
 .post-content {
   line-height: 1.8;
   font-size: 1.1rem;
+  color: #e0e0e0;
 }
 
 .post-content p {
@@ -39,29 +64,456 @@ main {
   height: 100%;
   display: flex;
   flex-direction: column;
+  background-color: #1a1a1a;
+  border: 1px solid #3a0000;
+  box-shadow: 0 2px 8px rgba(139, 0, 0, 0.3);
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 24px rgba(139, 0, 0, 0.6);
+  border-color: var(--blood-red);
+}
+
+.card-content {
+  color: #e0e0e0;
+}
+
+.card-content .title a {
+  color: #e0e0e0;
+  transition: color 0.3s;
+}
+
+.card-content .title a:hover {
+  color: var(--crimson);
+}
+
+.card-content .subtitle {
+  color: #b0b0b0;
 }
 
 .card-footer {
   margin-top: auto;
+  background-color: #0a0a0a;
+  border-top: 1px solid #3a0000;
+}
+
+.card-footer-item {
+  color: #b0b0b0;
+  transition: all 0.3s;
+}
+
+.card-footer-item:hover {
+  color: var(--crimson);
+  background-color: rgba(139, 0, 0, 0.2);
 }
 
 .navbar {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, var(--black) 0%, var(--dark-red) 50%, var(--black) 100%);
+  box-shadow: 0 2px 8px rgba(139, 0, 0, 0.5);
+  border-bottom: 2px solid var(--blood-red);
+}
+
+.navbar-item {
+  color: #e0e0e0 !important;
+  transition: all 0.3s;
+}
+
+.navbar-item:hover {
+  color: var(--crimson) !important;
+  background-color: rgba(139, 0, 0, 0.3) !important;
+}
+
+.navbar-burger {
+  color: #e0e0e0;
+}
+
+.navbar-burger:hover {
+  background-color: rgba(139, 0, 0, 0.3);
+}
+
+.button.is-primary {
+  background-color: var(--blood-red);
+  border-color: var(--dark-red);
+  color: #fff;
+  transition: all 0.3s;
+}
+
+.button.is-primary:hover {
+  background-color: var(--crimson);
+  border-color: var(--blood-red);
+  box-shadow: 0 4px 12px rgba(139, 0, 0, 0.5);
+}
+
+.button.is-danger {
+  background-color: var(--dark-red);
+  border-color: var(--blood-red);
+  color: #fff;
+}
+
+.button.is-danger:hover {
+  background-color: var(--blood-red);
+  border-color: var(--crimson);
+}
+
+.button.is-light {
+  background-color: #2a2a2a;
+  border-color: #3a3a3a;
+  color: #e0e0e0;
+}
+
+.button.is-light:hover {
+  background-color: #3a3a3a;
+  border-color: var(--blood-red);
+  color: #fff;
+}
+
+.box {
+  background-color: #1a1a1a;
+  border: 1px solid #3a0000;
+  box-shadow: 0 2px 8px rgba(139, 0, 0, 0.3);
+  color: #e0e0e0;
+}
+
+.input, .textarea {
+  background-color: #0a0a0a;
+  border-color: #3a0000;
+  color: #e0e0e0;
+}
+
+.input:focus, .textarea:focus {
+  border-color: var(--blood-red);
+  box-shadow: 0 0 0 0.125em rgba(139, 0, 0, 0.25);
+}
+
+.input::placeholder, .textarea::placeholder {
+  color: #666;
+}
+
+.label {
+  color: #e0e0e0;
+}
+
+.title {
+  color: #e0e0e0;
+}
+
+.subtitle {
+  color: #b0b0b0;
+}
+
+.content {
+  color: #e0e0e0;
 }
 
 .footer {
-  background-color: #f5f5f5;
+  background: linear-gradient(135deg, var(--black) 0%, var(--dark-red) 50%, var(--black) 100%);
   padding: 2rem 1.5rem;
+  border-top: 2px solid var(--blood-red);
+  color: #e0e0e0;
+}
+
+.footer strong {
+  color: var(--crimson);
 }
 
 .notification {
   margin-bottom: 0;
   border-radius: 0;
+}
+
+.notification.is-success {
+  background-color: rgba(139, 0, 0, 0.2);
+  color: #e0e0e0;
+  border-left: 4px solid var(--blood-red);
+}
+
+.notification.is-danger {
+  background-color: rgba(92, 0, 0, 0.3);
+  color: #e0e0e0;
+  border-left: 4px solid var(--dark-red);
+}
+
+.has-text-danger {
+  color: var(--crimson) !important;
+}
+
+.has-text-grey {
+  color: #b0b0b0 !important;
+}
+
+.has-text-grey-light {
+  color: #888 !important;
+}
+
+/* Additional styling for red/black theme */
+a {
+  color: var(--crimson);
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: var(--blood-red);
+}
+
+.level {
+  color: #e0e0e0;
+}
+
+.icon {
+  color: var(--crimson);
+}
+
+.icon-text .icon {
+  color: var(--crimson);
+}
+
+/* Form styling */
+.field .help {
+  color: #b0b0b0;
+}
+
+/* Link styling in content */
+.content a {
+  color: var(--crimson);
+  text-decoration: underline;
+}
+
+.content a:hover {
+  color: var(--blood-red);
+}
+
+/* Box styling enhancements */
+.box .title {
+  border-bottom: 2px solid var(--blood-red);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Card title hover effect */
+.card .title a {
+  position: relative;
+}
+
+.card .title a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--crimson);
+  transition: width 0.3s;
+}
+
+.card:hover .title a::after {
+  width: 100%;
+}
+
+/* Ensure consistent container styling */
+.container {
+  color: #e0e0e0;
+}
+
+.container.is-max-desktop {
+  background: transparent;
+}
+
+/* Consistent list styling */
+ul, ol {
+  color: #e0e0e0;
+}
+
+li {
+  color: #e0e0e0;
+}
+
+.notification ul {
+  margin-left: 1.5rem;
+}
+
+.notification li {
+  margin-bottom: 0.5rem;
+}
+
+/* Form elements consistency */
+select {
+  background-color: #0a0a0a;
+  border-color: #3a0000;
+  color: #e0e0e0;
+}
+
+select:focus {
+  border-color: var(--blood-red);
+  box-shadow: 0 0 0 0.125em rgba(139, 0, 0, 0.25);
+}
+
+/* Checkbox and radio button styling */
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: var(--blood-red);
+}
+
+/* Consistent button group styling */
+.buttons .button {
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Consistent level/item styling */
+.level-item {
+  color: #e0e0e0;
+}
+
+.level-left, .level-right {
+  color: #e0e0e0;
+}
+
+/* Consistent column styling */
+.columns {
+  margin-left: -0.75rem;
+  margin-right: -0.75rem;
+  margin-top: -0.75rem;
+}
+
+.column {
+  padding: 0.75rem;
+}
+
+/* Consistent content area */
+.content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
+  color: #e0e0e0;
+  border-bottom: 1px solid #3a0000;
+  padding-bottom: 0.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.content p {
+  color: #e0e0e0;
+  margin-bottom: 1rem;
+}
+
+.content strong {
+  color: var(--crimson);
+}
+
+.content em {
+  color: #b0b0b0;
+}
+
+/* Consistent icon styling across all pages */
+.fas, .far, .fab {
+  color: var(--crimson);
+}
+
+.icon-text {
+  color: #e0e0e0;
+}
+
+/* Consistent field styling */
+.field {
+  margin-bottom: 1.5rem;
+}
+
+.field:last-child {
+  margin-bottom: 0;
+}
+
+.control {
+  color: #e0e0e0;
+}
+
+/* Consistent has-text classes */
+.has-text-white {
+  color: #fff !important;
+}
+
+.has-text-black {
+  color: #000 !important;
+}
+
+.has-text-dark {
+  color: #e0e0e0 !important;
+}
+
+/* Ensure all text in boxes is visible */
+.box p,
+.box span,
+.box div {
+  color: #e0e0e0;
+}
+
+/* Consistent link colors in all contexts */
+.card-footer-item,
+.navbar-item,
+.content a,
+.box a {
+  color: inherit;
+}
+
+.card-footer-item:hover,
+.navbar-item:hover {
+  color: var(--crimson) !important;
+}
+
+/* Consistent spacing */
+.mt-4, .mt-5, .mt-6 {
+  margin-top: 1.5rem;
+}
+
+.mb-4, .mb-5 {
+  margin-bottom: 1.5rem;
+}
+
+/* Ensure consistent background for all pages */
+html {
+  background-color: #0a0a0a;
+}
+
+/* Consistent table styling if used */
+table {
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+  border: 1px solid #3a0000;
+}
+
+table th {
+  background-color: #0a0a0a;
+  color: var(--crimson);
+  border: 1px solid #3a0000;
+}
+
+table td {
+  border: 1px solid #3a0000;
+  color: #e0e0e0;
+}
+
+table tr:hover {
+  background-color: rgba(139, 0, 0, 0.1);
+}
+
+/* Consistent hr styling */
+hr {
+  background-color: #3a0000;
+  height: 1px;
+  border: none;
+}
+
+/* Consistent code/pre styling */
+code, pre {
+  background-color: #0a0a0a;
+  color: var(--crimson);
+  border: 1px solid #3a0000;
+}
+
+/* Consistent blockquote styling */
+blockquote {
+  border-left: 4px solid var(--blood-red);
+  background-color: rgba(139, 0, 0, 0.1);
+  color: #e0e0e0;
+  padding: 1rem;
+  margin: 1rem 0;
 }
 
 @media screen and (max-width: 768px) {
@@ -71,5 +523,13 @@ main {
   
   .title.is-1 {
     font-size: 2rem;
+  }
+  
+  .box {
+    margin: 0.5rem;
+  }
+  
+  .card {
+    margin-bottom: 1rem;
   }
 }
