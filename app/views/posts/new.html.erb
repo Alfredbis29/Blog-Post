@@ -1,0 +1,49 @@
+<div class="container is-max-desktop mt-6">
+  <div class="box">
+    <h1 class="title is-2 mb-5">New Post</h1>
+
+    <%= simple_form_for @post, html: { class: 'form' } do |f| %>
+      <% if @post.errors.any? %>
+        <div class="notification is-danger">
+          <h2 class="subtitle is-5"><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+          <ul>
+            <% @post.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="field">
+        <%= f.label :title, class: 'label' %>
+        <div class="control">
+          <%= f.text_field :title, class: 'input is-large', placeholder: 'Enter post title' %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= f.label :author, class: 'label' %>
+        <div class="control">
+          <%= f.text_field :author, class: 'input', placeholder: 'Enter your name' %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= f.label :content, class: 'label' %>
+        <div class="control">
+          <%= f.text_area :content, class: 'textarea', rows: 15, placeholder: 'Write your post content here...' %>
+        </div>
+      </div>
+
+      <div class="field is-grouped">
+        <div class="control">
+          <%= f.submit 'Create Post', class: 'button is-primary is-large' %>
+        </div>
+        <div class="control">
+          <%= link_to 'Cancel', posts_path, class: 'button is-light is-large' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
