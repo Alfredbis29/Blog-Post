@@ -1,0 +1,50 @@
+<div class="container is-max-desktop mt-6">
+  <div class="level">
+    <div class="level-left">
+      <div class="level-item">
+        <h1 class="title is-1">Blog Posts</h1>
+      </div>
+    </div>
+    <div class="level-right">
+      <div class="level-item">
+        <%= link_to 'New Post', new_post_path, class: 'button is-primary is-large' %>
+      </div>
+    </div>
+  </div>
+
+  <% if @posts.any? %>
+    <div class="columns is-multiline">
+      <% @posts.each do |post| %>
+        <div class="column is-half">
+          <div class="card">
+            <div class="card-content">
+              <p class="title is-4">
+                <%= link_to post.title, post %>
+              </p>
+              <p class="subtitle is-6 has-text-grey">
+                By <%= post.author %> • <%= time_ago_in_words(post.created_at) %> ago
+              </p>
+              <div class="content">
+                <%= truncate(post.content, length: 150) %>
+              </div>
+            </div>
+            <footer class="card-footer">
+              <%= link_to 'Read More', post, class: 'card-footer-item' %>
+              <%= link_to 'Edit', edit_post_path(post), class: 'card-footer-item' %>
+              <%= link_to 'Delete', post, 
+                  data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, 
+                  class: 'card-footer-item has-text-danger' %>
+            </footer>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="box has-text-centered">
+      <p class="title is-4 has-text-grey">No posts yet</p>
+      <p class="subtitle is-6 has-text-grey-light">Create your first post to get started!</p>
+      <%= link_to 'Create First Post', new_post_path, class: 'button is-primary mt-4' %>
+    </div>
+  <% end %>
+</div>
+
