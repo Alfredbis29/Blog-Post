@@ -2,7 +2,18 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    @posts = Post.order(created_at: :desc)
+    begin
+      @posts = Post.order(created_at: :desc)
+    rescue ActiveRecord::StatementInvalid => e
+      if e.message.include?("Could not find table")
+        # Database not set up yet, run migrations
+        Rails.logger.error "Database table missing, attempting to migrate..."
+        system("bundle exec rails db:migrate 2>&1")
+        @posts = Post.order(created_at: :desc) rescue []
+      else
+        raise
+      end
+    end
   end
 
   def show
