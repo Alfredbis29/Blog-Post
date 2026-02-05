@@ -1,5 +1,7 @@
 # BlogPost
 
+# BlogPost
+
 A beautiful, modern blog application built with Ruby on Rails and Bulma CSS framework.
 
 ## Features
