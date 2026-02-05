@@ -1,16 +1,94 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BlogPost</title>
+    <title>BlogPost - Share Your Thoughts</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+      <div class="container">
+        <div class="navbar-brand">
+          <%= link_to root_path, class: "navbar-item" do %>
+            <span class="icon-text">
+              <span class="icon">
+                <i class="fas fa-blog"></i>
+              </span>
+              <span class="has-text-weight-bold is-size-4">BlogPost</span>
+            </span>
+          <% end %>
+
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start">
+            <%= link_to "All Posts", posts_path, class: "navbar-item" %>
+            <%= link_to "New Post", new_post_path, class: "navbar-item" %>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <% if notice %>
+      <div class="notification is-success is-light">
+        <button class="delete"></button>
+        <%= notice %>
+      </div>
+    <% end %>
+
+    <% if alert %>
+      <div class="notification is-danger is-light">
+        <button class="delete"></button>
+        <%= alert %>
+      </div>
+    <% end %>
+
+    <main>
+      <%= yield %>
+    </main>
+
+    <footer class="footer mt-6">
+      <div class="content has-text-centered">
+        <p>
+          <strong>BlogPost</strong> - A simple blog application built with Ruby on Rails and Bulma.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // Close notification on delete button click
+      document.addEventListener('DOMContentLoaded', () => {
+        (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+          const $notification = $delete.parentNode;
+          $delete.addEventListener('click', () => {
+            $notification.parentNode.removeChild($notification);
+          });
+        });
+
+        // Mobile menu toggle
+        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+        if ($navbarBurgers.length > 0) {
+          $navbarBurgers.forEach( el => {
+            el.addEventListener('click', () => {
+              const target = el.dataset.target;
+              const $target = document.getElementById(target);
+              el.classList.toggle('is-active');
+              $target.classList.toggle('is-active');
+            });
+          });
+        }
+      });
+    </script>
   </body>
 </html>

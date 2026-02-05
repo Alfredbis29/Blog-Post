@@ -10,6 +10,66 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require bulma
  *= require_tree .
  *= require_self
  */
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+.post-content {
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.post-content p {
+  margin-bottom: 1rem;
+}
+
+.card {
+  transition: transform 0.2s, box-shadow 0.2s;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.card-footer {
+  margin-top: auto;
+}
+
+.navbar {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.footer {
+  background-color: #f5f5f5;
+  padding: 2rem 1.5rem;
+}
+
+.notification {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .container.is-max-desktop {
+    padding: 0 1rem;
+  }
+  
+  .title.is-1 {
+    font-size: 2rem;
+  }
+}
