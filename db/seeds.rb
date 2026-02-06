@@ -1,9 +1,10 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 
+Comment.destroy_all
 Post.destroy_all
 
-Post.create!([
+posts = Post.create!([
   {
     title: "Welcome to BlogPost!",
     author: "Admin",
@@ -26,4 +27,19 @@ Post.create!([
   }
 ])
 
-puts "Created #{Post.count} sample posts!"
+first_post = posts.first
+
+if first_post
+  first_post.comments.create!([
+    {
+      author_name: "AlphaCamp",
+      body: "Welcome to your new blood-red blog! This is a sample comment to show how comments look."
+    },
+    {
+      author_name: "Happy Reader",
+      body: "Love the dark red and black theme. It really makes the content pop!"
+    }
+  ])
+end
+
+puts "Created #{Post.count} sample posts and #{Comment.count} comments!"
