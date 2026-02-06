@@ -79,31 +79,41 @@
     <% end %>
   </div>
 
-  <!-- New comment form -->
-  <div class="box mt-4">
-    <h3 class="title is-5">Add a comment</h3>
+  <!-- New comment form (hidden until button click) -->
+  <div class="box mt-4" data-controller="comment-form">
+    <div class="field">
+      <button type="button"
+              class="button is-primary"
+              data-action="click->comment-form#toggle">
+        Add a comment
+      </button>
+    </div>
 
-    <%= form_with model: [@post, @post.comments.build], local: true do |f| %>
-      <div class="field">
-        <%= f.label :author_name, "Name", class: "label" %>
-        <div class="control">
-          <%= f.text_field :author_name, class: "input", placeholder: "Your name" %>
-        </div>
-      </div>
+    <div data-comment-form-target="form" class="mt-4">
+      <h3 class="title is-5">Add a comment</h3>
 
-      <div class="field">
-        <%= f.label :body, "Comment", class: "label" %>
-        <div class="control">
-          <%= f.text_area :body, class: "textarea", rows: 4, placeholder: "Write your comment..." %>
+      <%= form_with model: [@post, @post.comments.build], local: true do |f| %>
+        <div class="field">
+          <%= f.label :author_name, "Name", class: "label" %>
+          <div class="control">
+            <%= f.text_field :author_name, class: "input", placeholder: "Your name" %>
+          </div>
         </div>
-      </div>
 
-      <div class="field is-grouped">
-        <div class="control">
-          <%= f.submit "Post Comment", class: "button is-primary" %>
+        <div class="field">
+          <%= f.label :body, "Comment", class: "label" %>
+          <div class="control">
+            <%= f.text_area :body, class: "textarea", rows: 4, placeholder: "Write your comment..." %>
+          </div>
         </div>
-      </div>
-    <% end %>
+
+        <div class="field is-grouped">
+          <div class="control">
+            <%= f.submit "Post Comment", class: "button is-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
 
