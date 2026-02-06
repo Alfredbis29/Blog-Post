@@ -38,3 +38,4 @@ The app uses SQLite by default. For production, consider using PostgreSQL:
 - Update `config/database.yml` for production
 - Add PostgreSQL database in Render
 
+

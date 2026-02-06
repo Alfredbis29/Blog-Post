@@ -43,5 +43,67 @@
       <%= link_to 'Back to Posts', posts_path, class: 'button is-light' %>
     </div>
   </div>
+
+  <!-- Comments section -->
+  <div class="box mt-5">
+    <h2 class="title is-4">Comments</h2>
+
+    <% if @post.comments.any? %>
+      <div class="content">
+        <% @post.comments.order(created_at: :desc).each do |comment| %>
+          <article class="media mb-4">
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <strong><%= comment.author_name %></strong>
+                  <span class="has-text-grey is-size-7">
+                    • <%= time_ago_in_words(comment.created_at) %> ago
+                  </span>
+                  <br>
+                  <%= simple_format(comment.body) %>
+                </p>
+              </div>
+              <nav class="level is-mobile">
+                <div class="level-left">
+                  <%= link_to 'Delete', post_comment_path(@post, comment),
+                        data: { turbo_method: :delete, turbo_confirm: 'Delete this comment?' },
+                        class: 'level-item has-text-danger is-size-7' %>
+                </div>
+              </nav>
+            </div>
+          </article>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="has-text-grey-light is-italic">No comments yet. Be the first to share your thoughts.</p>
+    <% end %>
+  </div>
+
+  <!-- New comment form -->
+  <div class="box mt-4">
+    <h3 class="title is-5">Add a comment</h3>
+
+    <%= form_with model: [@post, @post.comments.build], local: true do |f| %>
+      <div class="field">
+        <%= f.label :author_name, "Name", class: "label" %>
+        <div class="control">
+          <%= f.text_field :author_name, class: "input", placeholder: "Your name" %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= f.label :body, "Comment", class: "label" %>
+        <div class="control">
+          <%= f.text_area :body, class: "textarea", rows: 4, placeholder: "Write your comment..." %>
+        </div>
+      </div>
+
+      <div class="field is-grouped">
+        <div class="control">
+          <%= f.submit "Post Comment", class: "button is-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
 
