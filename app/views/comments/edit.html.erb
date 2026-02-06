@@ -1,0 +1,32 @@
+<div class="container is-max-desktop mt-6">
+  <div class="box">
+    <h1 class="title is-3 mb-5">Edit Comment</h1>
+
+    <%= form_with model: [@post, @comment], local: true do |f| %>
+      <div class="field">
+        <%= f.label :author_name, "Name", class: "label" %>
+        <div class="control">
+          <%= f.text_field :author_name, class: "input", placeholder: "Your name" %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= f.label :body, "Comment", class: "label" %>
+        <div class="control">
+          <%= f.text_area :body, class: "textarea", rows: 4, placeholder: "Update your comment..." %>
+        </div>
+      </div>
+
+      <div class="field is-grouped">
+        <div class="control">
+          <%= f.submit "Update Comment", class: "button is-primary" %>
+        </div>
+        <div class="control">
+          <%= link_to "Cancel", @post, class: "button is-light" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
