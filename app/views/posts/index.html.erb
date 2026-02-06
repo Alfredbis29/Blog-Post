@@ -23,6 +23,9 @@
               </p>
               <p class="subtitle is-6 has-text-grey">
                 By <%= post.author %> • <%= time_ago_in_words(post.created_at) %> ago
+                <% if post.respond_to?(:views) %>
+                  • <%= post.views %> view<%= "s" unless post.views == 1 %>
+                <% end %>
               </p>
               <div class="content">
                 <%= truncate(post.content, length: 150) %>
