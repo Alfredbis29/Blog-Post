@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -e
+
+# Determine environment
+ENV_NAME="${RACK_ENV:-${RAILS_ENV:-production}}"
+
+# Ensure db directory exists
+mkdir -p db
+
+# Try to run migrations (non-blocking, will continue if already migrated)
+echo "Ensuring database is ready..."
+RAILS_ENV=${ENV_NAME} bundle exec rails db:create 2>/dev/null || true
+RAILS_ENV=${ENV_NAME} bundle exec rails db:migrate 2>/dev/null || true
+
+# Start the server
+echo "Starting Rails server in ${ENV_NAME} environment..."
+exec bundle exec rails server -p ${PORT:-3000} -e ${ENV_NAME}
+

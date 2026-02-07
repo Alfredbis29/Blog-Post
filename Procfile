@@ -1,2 +1,2 @@
-web: bundle exec rails server -p ${PORT:-3000} -e ${RACK_ENV:-production}
+web: bin/start_server
 release: bin/release
