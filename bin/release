@@ -4,6 +4,12 @@ set -e
 # Ensure db directory exists for SQLite
 mkdir -p db
 
-# Run migrations
-bundle exec rails db:create db:migrate
+# Determine environment from RACK_ENV or RAILS_ENV, default to production
+ENV_NAME="${RACK_ENV:-${RAILS_ENV:-production}}"
+
+# Run migrations in the correct environment
+echo "Running migrations in ${ENV_NAME} environment..."
+RAILS_ENV=${ENV_NAME} bundle exec rails db:create db:migrate
+
+echo "Migrations completed successfully!"
 
