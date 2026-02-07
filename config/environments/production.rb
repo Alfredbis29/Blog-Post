@@ -19,7 +19,7 @@ Rails.application.configure do
   config.eager_load = true
 
   # Enable error details temporarily for debugging (disable after fixing)
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]

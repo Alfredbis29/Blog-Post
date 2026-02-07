@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -e
+
+# Ensure db directory exists for SQLite
+mkdir -p db
+
+# Run migrations
+bundle exec rails db:create db:migrate
+
