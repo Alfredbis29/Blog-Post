@@ -16,3 +16,4 @@ RAILS_ENV=${ENV_NAME} bundle exec rails db:migrate 2>/dev/null || true
 echo "Starting Rails server in ${ENV_NAME} environment..."
 exec bundle exec rails server -p ${PORT:-3000} -e ${ENV_NAME}
 
+
